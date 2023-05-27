@@ -81,5 +81,96 @@ public class Tree {
 
 
 
+public class No {
+
+        public No direita,esquerda,pai;
+        public Item item;
 
 
+        public No(Item auxiliar) {
+           item = auxiliar;
+           direita = esquerda = pai = null;
+        }
+
+
+        public No getDireita() {
+                return direita;
+        }
+
+        public void setDireita(No dir) {
+                this.direita = dir;
+        }
+
+        public No getEsq() {
+                return esquerda;
+        }
+
+        public void setEsquerda(No esq) {
+                this.esquerda = esq;
+        }
+
+        public Item getItem() {
+                return item;
+        }
+
+        public void setItem(Item item) {
+                this.item = item;
+        }
+}
+
+
+public class Item {
+
+    private String nome, telefone;
+
+    public Item (String nome, String telefone){
+        this.nome = nome;
+        this.telefone = telefone;
+    }
+
+    public Item() {
+
+    }
+
+    public String getNome(){
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
+
+    public String getTelefone(){
+        return telefone;
+    }
+
+    public String toString(){
+        return (nome + "\n" + telefone + "\n");
+    }
+
+
+}
+
+
+public class Main {
+    public static void main(String[] args) {
+        Item item = new Item();
+        Item item1 = new Item("Heloise", "123");
+        Item item2 = new Item("Thiago", "456");
+        Item item3 = new Item("Ana", "7898");
+        Item item4 = new Item("Maria", "4448");
+
+
+        Tree arvore = new Tree();
+
+        System.out.println(arvore.inserir(item1));
+        System.out.println(arvore.pesquisar(item1));
+
+
+
+    }
+}
