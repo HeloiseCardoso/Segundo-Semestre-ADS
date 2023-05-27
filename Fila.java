@@ -72,3 +72,109 @@ public class Fila {
     }
 
     }
+
+
+
+public class Cliente {
+    private String nome;
+    private int idade;
+
+    public Cliente(String nome, int idade) {
+        this.nome = nome;
+        this.idade = idade;
+    }
+
+    /*@Override
+    public String toString(){
+        System.out.println("Nome: " + nome + " " + "Idade: " + idade);
+        return null;
+    }*/
+
+    public String getCliente() {
+        String auxiliar = nome + "\n";
+        auxiliar = nome + "  " + Integer.toString(idade) + "\n";
+        return auxiliar;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+
+    public boolean setIdade(int idade){
+        if(idade <0 ){
+            return false;
+        }
+        this.idade = idade;
+        return true;
+    }
+
+}
+
+import java.util.Scanner;
+
+public class Base {
+    static Scanner scanner = new Scanner(System.in);
+
+    static Cliente criarCliente() {
+        System.out.println("Nome: ");
+        scanner.skip("\\R");
+        String nome = scanner.nextLine();
+        System.out.println("Idade");
+        int idade = scanner.nextInt();
+        Cliente auxiliar = new Cliente(nome, idade);
+        return auxiliar;
+    }
+
+    public static void main(String[] args) {
+
+        Fila fila = new Fila();
+        Cliente auxiliar = null;
+        int tamanho = 0;
+
+        do {
+            System.out.println("Tamanho: ");
+            tamanho = scanner.nextInt();
+        } while (!fila.setMaxTam(tamanho));
+        do {
+            System.out.println("Digite: ");
+            System.out.println("1: Para enfileirar.");
+            System.out.println("2: Para desenfileirar.");
+            System.out.println("3: Para encerrar.");
+            tamanho = scanner.nextInt();
+            switch (tamanho) {
+                case 1:
+                    auxiliar = criarCliente();
+                    if (fila.enfileirar(auxiliar)) {
+                        System.out.println("Sucesso.");
+                    } else {
+                        System.out.println("Erro: Fila cheia.");
+                        auxiliar = null;
+                    }
+                    break;
+                case 2:
+                    auxiliar = fila.desenfileirar();
+                    if (auxiliar == null) {
+                        System.out.println("Erro: Fila vazia.");
+                    } else {
+                        System.out.println(auxiliar.getCliente());
+                        auxiliar = null;
+                    }
+                    break;
+                case 3:
+                    System.out.println("Programa encerrando.");
+                    break;
+                default:
+                    System.out.println("Opção inválida.");
+            }
+        } while (tamanho != 3);
+
+    }
+
+
+
+
+
+
+
+
