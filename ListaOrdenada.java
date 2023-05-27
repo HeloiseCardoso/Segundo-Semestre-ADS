@@ -55,3 +55,40 @@ public class Fila {
         }
     }
 
+public class Cliente {
+    private String nome;
+    private String cpf;
+    private String fone;
+
+    //getCliente():String
+
+    public Cliente (String nome, String cpf, String fone){
+        this.nome = nome;
+        this.cpf = cpf;
+        this.fone = fone;
+    }
+
+    public String getCliente(){
+        String auxiliar = nome + "\n" + cpf + "\n" + "fone";
+        return auxiliar;
+    }
+
+import java.util.Scanner;
+
+public class Base {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        String nome, telefone, cpf;
+        scanner.skip("\\R");
+
+        System.out.println("Nome: ");
+        nome = scanner.next();
+
+        System.out.println("Telefone: ");
+        telefone = scanner.next();
+
+        System.out.println("CPF: ");
+        cpf = scanner.next();
+    }
+}
