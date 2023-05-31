@@ -41,7 +41,7 @@ public class Tree {
         while ( noAtual!= null) {
             if (item.getNome().compareTo(noAtual.item.getNome()) < 0) {
                 noAnterior = noAtual;
-                noAnterior = noAnterior.esquerda; //fim da condicao ir para esquerda
+                noAtual = noAtual.esquerda; //fim da condicao ir para esquerda
                 System.out.println("Fim da condicao, no para esquerda" + noAtual.getItem().getNome());
             } else {
                 if (item.getNome().compareTo(noAtual.item.getNome()) > 0) {
