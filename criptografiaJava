@@ -1,0 +1,65 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.math.BigInteger;
+import java.security.*;
+
+
+public class Main {
+    public static void main(String[] args) throws Exception {
+
+
+        String txt = "C:\\Users\\heloi\\Documents\\LerArquivo\\src\\TESTE CRIPTOGRAFIA.txt";
+
+        String texto = "";
+
+        try {
+            FileReader arq = new FileReader(txt);
+            BufferedReader lerArq = new BufferedReader(arq);
+
+            String linha = lerArq.readLine(); // lê a primeira linha
+            while (linha != null) {
+                System.out.printf("%s\n", linha);
+                linha = lerArq.readLine(); // lê da segunda até a última linha
+                texto = linha + texto;
+            }
+
+            arq.close();
+        } catch (IOException e) {
+            System.out.println("Erro na abertura do arquivo: %s.\n" + e.getMessage());
+        }
+
+        System.out.println();
+
+
+        Embaralhar embaralhar = new Embaralhar();
+        String retornoMd5 = embaralhar.md5(texto);
+        System.out.println(retornoMd5);
+
+        String retornoSha256 = embaralhar.sha256(texto);
+        System.out.println(retornoSha256);
+
+
+    }
+}
+
+public class Embaralhar {
+
+
+
+    public String md5(String texto) throws Exception {
+        MessageDigest messageDigest = MessageDigest.getInstance("MD5");
+        messageDigest.reset();
+        messageDigest.update(texto.getBytes("utf8"),0,texto.length());
+        return "MD5 " + new BigInteger(1,messageDigest.digest()).toString(16);
+    }
+
+    public  String sha256(String texto) throws Exception{
+        MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
+        messageDigest.reset();
+        messageDigest.update(texto.getBytes("utf8"));
+        return "SHA-256" + new BigInteger(1,messageDigest.digest()).toString(16);
+    }
+
+}
+
